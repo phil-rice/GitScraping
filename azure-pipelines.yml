@@ -32,7 +32,7 @@ stages:
             artifact: 'GitReports-$(System.JobPositionInPhase)'
             publishLocation: 'pipeline'
 
-- stage: Aggregate_Data
+  - stage: Aggregate_Data
     jobs:
       - job: Aggregate
 
