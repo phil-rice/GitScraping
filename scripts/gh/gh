@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+#set -e
+
+me=gh
+function coreHelp(){
+   echo "   $me --help     # gives an overview of the commands"
+   echo "   $me --viewoptions # explains how to use view options"
+   echo "   $me --resources # a list of the implemented resources"
+}
+
+function usage(){
+   echo "usage: $me <resource> <command>       "
+   coreHelp
+   exit 2
+}
+
+
+if [ $# -lt 1 ];  then
+     usage
+fi
+
+ORIGINAL=( "$@" )
+export DRY=
+export ALL=
+export RAW=
+export PROPERTY_FILTER=
+export PREFIX_COL=2
+#export queueId=371 # Temporary bodge
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+       --debug)            export DEBUG="true"; shift;;
+       --debugOff)         export DEBUG=""; export DEBUG_ERROR="";shift;;
+       --debugError)       export DEBUG_ERROR="true"; shift;;
+       -l|--log)           export LOG_FILE="$2"; shift;shift;;
+       --logPrefix)        export LOG_PREFIX="$2"; shift;shift;;
+       --props)            export PROPERTY_FILTER="$2"; shift;shift;;
+       -d|--dry)           export DRY="--dry"; shift;;
+       -a|--all)           export ALL="--all"; shift;;
+       -m|--mine)          export PREFIX="$whoami"; export ALL="--all";shift;;
+       -r|--raw)           export RAW="--raw"; shift;;
+       -t|--time)          export TIMECURLS="--time"; shift;;
+       *)                  POSITIONAL+=( "$1" ); shift;;
+    esac
+done
+
+if [ "$LOG_INDENT" = "" ]; then export LOG_INDENT="   "; fi
+
+log.sh "$me ${ORIGINAL[*]}"
+start=`date +%s%N`
+
+function finish {
+  end=`date +%s%N`
+  duration=$(( (end - start) / 1000000))
+  log.sh "adz ${ORIGINAL[*]} ... took... $duration"
+
+}
+trap finish EXIT
+
+export LOG_PREFIX="${LOG_PREFIX}${ADZ_LOG_INDENT}"
+
+OLD=$IFS
+IFS='`'
+set -- "${POSITIONAL[@]}"
+IFS=$OLD
+
+export RESOURCE=$1
+export COMMAND=$2
+
+function checkFor(){
+   check=$1           # this will be looked for as a command and if the exit code is zero then it will be executed with params 3 onwards passed to it
+   exitcodeiffound=$2 #if set, when found adz will execute with this exit code
+   shiftwhenfound=$3
+   shift 3
+   command -v $check > /dev/null
+   if [ "$?" = "0" ] ; then
+      shift "$shiftwhenfound"
+      $check "$@"
+      exitcode=$?
+      if [ "$exitcode" != "0" ]; then exit $exitcode; fi
+      exit $exitcodeiffound
+   fi
+}
+
+echo "checking $me-$RESOURCE-$COMMAND.sh"
+checkFor "$me-$RESOURCE-$COMMAND.sh" "0" "2"  "$@"
+
+if [ "$COMMAND" = "" ]; then
+    shift 1; checkFor "$me-$RESOURCE-list.sh" "0" "0"   "$@"
+    echo "Cannot list the resource $RESOURCE"
+    usage
+fi
+checkFor "$me-$RESOURCE-get.sh" "0" "1"  "$@"
+
+#if [ "${COMMAND:0:1}" = "-" -o  "${COMMAND:0:2}" = "--" ]; then
+#    shift 1; checkFor "adz-$RESOURCE-list.sh" "0" "0" "$@"; exit $?
+#fi
+
+echo "$me Resource $RESOURCE Command $COMMAND not understood"
+
+usage
