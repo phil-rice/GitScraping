@@ -5,20 +5,29 @@
 
 trigger:
 - master
+stages:
+  - stage: Gather_data
 
-pool:
-  vmImage: 'ubuntu-latest'
+    jobs:
+      - job: 'ScrapeGit'
 
-steps:
+        strategy:
+          parallel: 5
 
+        pool:
+          vmImage: 'ubuntu-latest'
 
-- script: |
-    source scripts/installGithubScrapping.sh
-    gitReports.sh scripts/sample/sample.txt '2 years ago' 'today'
-  displayName: 'Git Scrape'
+        steps:
+        - script: |
+            source scripts/installGithubScrapping.sh
+            echo "Will scrape:"
+            cat scripts/sample/sample.txt | splicer.sh $(System.JobPositionInPhase)  $(TotalJobsInPhase)
+            echo
+            cat scripts/sample/sample.txt | splicer.sh $(System.JobPositionInPhase)  $(TotalJobsInPhase)   |  gitReports.sh - '2 years ago' 'today'
+          displayName: 'Git Scrape'
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: 'gitReports'
-    artifact: 'GitReports'
-    publishLocation: 'pipeline'
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: 'gitReports'
+            artifact: 'GitReports'
+            publishLocation: 'pipeline'

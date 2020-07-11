@@ -26,7 +26,7 @@ checkPrefix=""
 if [ "$4" == "--check" ]; then checkPrefix="echo "; fi
 
 function pipeline(){
-  xargs -n1 -P 8 -I {} $checkPrefix executeCommandInRepo.sh "{}" "$command" "$logFileName"
+  xargs -L1 -I {} $checkPrefix executeCommandInRepo.sh "{}" "$command" "$logFileName"
 }
 
 if [ "$fileNameHoldingGitUrls" == '-' ]; then
