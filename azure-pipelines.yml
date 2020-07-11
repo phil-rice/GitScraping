@@ -21,9 +21,9 @@ stages:
         - script: |
             source scripts/installGithubScrapping.sh
             echo "Will scrape:"
-            cat scripts/sample/sample.txt | slicer.sh $(System.JobPositionInPhase)  $(TotalJobsInPhase)
+            cat scripts/sample/sample.txt | slicer.sh $(System.JobPositionInPhase)  $(System.TotalJobsInPhase)
             echo
-            cat scripts/sample/sample.txt | slicer.sh $(System.JobPositionInPhase)  $(TotalJobsInPhase)   |  gitReports.sh - '2 years ago' 'today'
+            cat scripts/sample/sample.txt | slicer.sh $(System.JobPositionInPhase)  $(System.TotalJobsInPhase)   |  gitReports.sh - '2 years ago' 'today'
           displayName: 'Git Scrape'
 
         - task: PublishPipelineArtifact@1

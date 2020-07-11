@@ -5,6 +5,7 @@ log/
 .cache/
 aggregated/
 bin/
+Results/
 
 ### IntelliJ IDEA ###
 .idea/
