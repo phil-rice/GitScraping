@@ -17,5 +17,6 @@ steps:
     source scripts/installGithubScrapping.sh
     ls -asl scripts
     ls -asl bin
+    echo "Path is $PATH"
     gitReports.sh scripts/sample/sample.txt '2 years ago' 'today'
   displayName: 'Git Scrape'
