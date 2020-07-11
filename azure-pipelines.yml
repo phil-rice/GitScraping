@@ -16,3 +16,9 @@ steps:
     source scripts/installGithubScrapping.sh
     gitReports.sh scripts/sample/sample.txt '2 years ago' 'today'
   displayName: 'Git Scrape'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/gitReports'
+    artifact: 'GitReports'
+    publishLocation: 'pipeline'
