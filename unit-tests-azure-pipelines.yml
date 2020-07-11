@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- script: |
+    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+    git fetch origin
+    git status
+    git branch -a
+    git remote -v
+  displayName: 'Fetch full repo'
+
+- script: |
+    source scripts/installGithubScrapping.sh
+    allTests.sh
+  displayName: 'Unit tests'
+
+- script: |
+    source scripts/installGithubScrapping.sh
+    gitReportsIntegrationTest.sh
+  displayName: 'Integration test'

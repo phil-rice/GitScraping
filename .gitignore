@@ -1,0 +1,17 @@
+tmp
+target/
+temp/
+Results/pullRequests/log/
+.cache/
+aggregated/
+bin/
+Results/
+gitReports
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+
