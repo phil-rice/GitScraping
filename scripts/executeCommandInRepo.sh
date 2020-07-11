@@ -18,7 +18,6 @@ if [ $# != 3 ]; then usage $@; fi
 gitCloneUrl="$1"
 command="$2"
 logFileName=$(realpath $3)
-echo "Command is $command"
 
 
 temp=$(mktemp -d)
@@ -31,7 +30,6 @@ set +e
 git clone "$gitCloneUrl" "$temp"
 if [ $? == 0 ]; then
   cd $temp
-  echo "About to execute $command"
   $command >> "$logFileName"
 else
   echo "Failed to load git url $gitCloneUrl" | tee -a "$logFileName"

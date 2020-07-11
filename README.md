@@ -40,6 +40,10 @@ The report is a human readable list of commiters and mergers for each repo
 
 At the end of the command it prints the report
 
+# Example commands
+```
+ gitReports.sh scripts/sample/sample.txt '2 years ago' 'today' | column -t
+```
 
 
 
