@@ -2,10 +2,11 @@
 
 # Setup
 
-* clone the git repo
-* cd 
-* source scripts/installGithubScrapping.sh
-
+```
+git clone git@github.com:phil-rice/GitScraping.git`
+cd GitScraping
+source scripts/installGithubScrapping.sh
+```
 This last command makes symbolic links in the 'bin' subdirectory and adds it to the path. It also sorts out the 
 permissions on the files so that they are executable
 
