@@ -14,5 +14,6 @@ steps:
 
 - script: |
     source scripts/installGithubScrapping.sh
+    ls -asl scripts
     gitReports.sh scripts/sample/sample.txt '2 years ago' 'today'  
   displayName: 'Git Scrape'
