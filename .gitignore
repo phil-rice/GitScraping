@@ -1,6 +1,6 @@
 tmp
 target/
-sample/
+scripts/sample/
 temp/
 log/
 .cache/
