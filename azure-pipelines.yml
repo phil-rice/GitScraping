@@ -13,13 +13,6 @@ steps:
 
 
 - script: |
-    ls -asl
-    ls -asl scripts
-    echo "Path is $PATH"
     source scripts/installGithubScrapping.sh
-    echo "Path is $PATH"
-    ls -asl scripts
-    ls -asl bin
-    echo "Path is $PATH"
     gitReports.sh scripts/sample/sample.txt '2 years ago' 'today'
   displayName: 'Git Scrape'

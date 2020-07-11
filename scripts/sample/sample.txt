@@ -1,0 +1,4 @@
+git@github.com:phil-rice/fizzbuzz3.git
+git@github.com:phil-rice/Anagram.git
+git@github.com:phil-rice/z.git
+git@github.com:phil-rice/GitScraping.git
