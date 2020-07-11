@@ -11,6 +11,7 @@ rootDir=`pwd`
 pushd bin
   bindir=`pwd`
   find $rootDir/scripts -maxdepth 3 -type f  -name "*.sh" -exec ln -s {}  \;
+  echo   sudo chmod u+x $rootDir/scripts
   sudo chmod u+x $rootDir/scripts
   sudo chmod u+x .
 popd
