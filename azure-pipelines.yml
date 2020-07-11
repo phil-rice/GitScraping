@@ -12,7 +12,7 @@ stages:
       - job: 'ScrapeGit'
 
         strategy:
-          parallel: 5
+          parallel: 4 # This number should be less than or equal to the number of lines in sample.txt
 
         pool:
           vmImage: 'ubuntu-latest'
