@@ -29,5 +29,28 @@ stages:
         - task: PublishPipelineArtifact@1
           inputs:
             targetPath: 'gitReports'
-            artifact: 'GitReports'
+            artifact: 'GitReports-$(System.JobPositionInPhase)'
             publishLocation: 'pipeline'
+
+- stage: Aggregate_Data
+    jobs:
+      - job: Aggregate
+
+        pool:
+          vmImage: 'ubuntu-latest'
+
+        steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              path: gitReports
+
+          - script: |
+              ls gitReports
+            displayName: 'debug'
+
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: 'gitReports'
+              artifact: "Results"
+              publishLocation: 'pipeline'
+            displayName: 'Publish results'
