@@ -27,12 +27,11 @@ function usage(){
 
 if [ $# == 0 -o $# -gt 3 ]; then usage; fi
 
-log=$(mktemp)
 read fromDate toDate <<< $(calculateFromToDates.sh "$2" "$3")
 
-executeCommandsInMultipleRepos.sh $1  "commitersFromLogs.sh $fromDate $toDate" "$log"
+executeCommandsInMultipleRepos.sh $1  "commitersFromLogs.sh $fromDate $toDate" gitReports
 echo
 echo
 echo "Results are"
-cat $log | column -t
-echo "Results are saved in file $log"
+cat gitReports | column -t
+
