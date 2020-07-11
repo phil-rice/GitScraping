@@ -15,6 +15,6 @@ steps:
 - script: |
     ls -asl
     ls -asl scripts
-    sudo source scripts/installGithubScrapping.sh
+    source scripts/installGithubScrapping.sh
     gitReports.sh scripts/sample/sample.txt '2 years ago' 'today'  
   displayName: 'Git Scrape'
