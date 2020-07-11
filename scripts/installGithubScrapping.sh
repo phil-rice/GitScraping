@@ -13,5 +13,5 @@ pushd bin
   find $rootDir/scripts -maxdepth 3 -type f  -name "*.sh" -exec ln -s {}  \;
   sudo chmod u+x ../scripts
   sudo chmod u+x .
-  export PATH="$bindir:$PATH"
 popd
+export PATH="$bindir:$PATH"

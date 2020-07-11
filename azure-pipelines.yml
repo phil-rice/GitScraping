@@ -14,7 +14,9 @@ steps:
 
 - script: |
     ls -asl
+    echo "Path is $PATH"
     source scripts/installGithubScrapping.sh
+    echo "Path is $PATH"
     ls -asl scripts
     ls -asl bin
     echo "Path is $PATH"
