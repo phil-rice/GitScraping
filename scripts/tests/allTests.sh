@@ -2,9 +2,8 @@
 
 set -e
 
+slicerTests.sh
 calculateFromToDatesTests.sh
 commitersFromLogsTest.sh
 executeCommandInRepoTest.sh
 executeCommandsInMultipleReposTest.sh
-gitReportTest.sh
-slicerTests.sh
