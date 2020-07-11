@@ -45,8 +45,9 @@ stages:
               path: rawData
 
           - script: |
-              ls gitReports
+              ls rawData
             displayName: 'debug'
+            
           - script: |
               find rawData -name gitReports | xargs -L1 cat | tee result
             displayName: 'aggregate'
