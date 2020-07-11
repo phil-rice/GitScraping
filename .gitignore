@@ -1,0 +1,16 @@
+tmp
+target/
+sample/
+temp/
+log/
+.cache/
+aggregated/
+bin/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+
