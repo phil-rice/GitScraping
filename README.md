@@ -42,7 +42,7 @@ At the end of the command it prints the report
 
 # Example commands
 ```
- gitReports.sh scripts/sample/sample.txt '2 years ago' 'today' | column -t
+ gitReports.sh scripts/sample/sample.txt '2 years ago' 'today'  
 ```
 
 

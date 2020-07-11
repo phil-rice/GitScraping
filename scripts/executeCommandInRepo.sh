@@ -32,5 +32,5 @@ if [ $? == 0 ]; then
   cd $temp
   $command >> "$logFileName"
 else
-  echo "Failed to load git url $gitCloneUrl" | tee -a "$logFileName"
+  echo "Failed $gitCloneUrl" | tee -a "$logFileName"
 fi

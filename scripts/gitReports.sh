@@ -34,5 +34,5 @@ executeCommandsInMultipleRepos.sh $1  "commitersFromLogs.sh $fromDate $toDate" "
 echo
 echo
 echo "Results are"
-cat $log
+cat $log | column -t
 echo "Results are saved in file $log"
