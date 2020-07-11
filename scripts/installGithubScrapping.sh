@@ -7,9 +7,10 @@ if [ ! -d "scripts" ]; then
 fi
 rm -rf bin
 mkdir bin
+rootDir=`pwd`
 pushd bin
   bindir=`pwd`
-  find ../scripts -maxdepth 3 -type f  -name "*.sh" -exec ln -s {}  \;
+  find $rootDir/scripts -maxdepth 3 -type f  -name "*.sh" -exec ln -s {}  \;
   sudo chmod u+x ../scripts
   sudo chmod u+x .
   export PATH="$bindir:$PATH"
