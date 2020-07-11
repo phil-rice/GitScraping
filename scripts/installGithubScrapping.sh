@@ -10,5 +10,5 @@ mkdir bin
 cd bin
 bindir=`pwd`
 find ../scripts -maxdepth 3 -type f  -name "*.sh" -exec ln -s {}  \;
-chmod u+x ../scripts
+sudo chmod u+x ../scripts
 export PATH="$bindir:$PATH"
