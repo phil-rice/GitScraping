@@ -1,2 +1,5 @@
-phil.rice@validoc.org
-philip.rice@hcl.com
+https://github.com/phil-rice/GitScraping.git
+https://github.com/phil-rice/Anagram.git
+https://github.com/phil-rice/fizzbuzz3.git
+https://github.com/phil-rice/seleniumDemo
+

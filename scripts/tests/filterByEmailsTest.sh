@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-me=calculateFromToDatesTests.sh
+me=filterByEmailsTest.sh
 
 echo "$me"
 
-# Note it is hard to test 'today' 'yesterday' so we skip that
 function assert(){
-  reason="$1"
-  expected="$2"
-  actual="$3"
+  expected="$1"
+  actual="$2"
   if [ "$expected" != "$actual" ]; then
-    echo "$me $reason expected $expected actual $actual"
+    echo "$me
+       expected [$expected]
+       actual   [$actual]
+  "
     exit 3
   fi
 }
 
-read from to <<< $(calculateFromToDates.sh '2020-5-1' '2020-10-1')
-assert SimpleDates '2020-05-01'  "$from"
-assert SimpleDates '2020-10-01' "$to"
+actual=$(filterByEmails.sh scripts/sample/emails.txt --check)
+assert "grep -E philip.rice@ing.com|phil.rice@iee.org|phil.rice@validoc.org" "$actual"
