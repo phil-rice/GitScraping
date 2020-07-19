@@ -6,3 +6,4 @@ slicerTests.sh
 calculateFromToDatesTests.sh
 executeCommandInRepoTest.sh
 executeCommandsInMultipleReposTest.sh
+filterByEmailsTest.sh

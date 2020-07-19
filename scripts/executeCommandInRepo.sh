@@ -30,8 +30,8 @@ set +e
 git clone "$gitCloneUrl" "$temp"
 if [ $? == 0 ]; then
   cd $temp
-  echo "executing $command"
-  $command >> "$logFileName"
+  echo "executing $command in $(pwd) Gitreport is $(gitReport.sh)"
+  $command | tee -a "$logFileName"
 else
   echo "Failed $gitCloneUrl" | tee -a "$logFileName"
 fi

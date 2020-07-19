@@ -18,7 +18,7 @@ function usage(){
 
     The dates are computed using 'date --date=<value given>'
 
-    The output is a tab separated list of 'commitOrMerge giturl count email'
+    The output is placed in the (hardcoded) file 'gitReports' and is a tab separated list of 'commitOrMerge giturl count email date'
 
     Actual params ($#) are $@
 "
@@ -28,10 +28,10 @@ function usage(){
 if [ $# == 0 -o $# -gt 3 ]; then usage; fi
 
 read fromDate toDate <<< $(calculateFromToDates.sh "$2" "$3")
-
-executeCommandsInMultipleRepos.sh $1  "aggregatedCommitersFromLogs.sh $fromDate $toDate" gitReports
+rm gitReports
+executeCommandsInMultipleRepos.sh $1  "commitersFromLogs.sh $fromDate $toDate" gitReports
 echo
 echo
-echo "Results are"
+echo "Results are in file gitReports"
 cat gitReports
 
