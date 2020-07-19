@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 log=$(mktemp)
-executeCommandsInMultipleRepos.sh $1  'gitReport.sh' "$log"
+executeCommandsInMultipleRepos.sh $1  'canLoad.sh' "$log"
 echo
 echo
 echo "Results are"

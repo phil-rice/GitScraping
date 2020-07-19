@@ -29,7 +29,7 @@ if [ $# == 0 -o $# -gt 3 ]; then usage; fi
 
 read fromDate toDate <<< $(calculateFromToDates.sh "$2" "$3")
 
-executeCommandsInMultipleRepos.sh $1  "commitersFromLogs.sh $fromDate $toDate" gitReports
+executeCommandsInMultipleRepos.sh $1  "aggregatedCommitersFromLogs.sh $fromDate $toDate" gitReports
 echo
 echo
 echo "Results are"

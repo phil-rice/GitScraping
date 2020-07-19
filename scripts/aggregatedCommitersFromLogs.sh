@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-me=commitersFromLogs.sh
-action='Commits And Merges'
+me=aggregatedCommitersFromLogs.sh
+action='Aggregated Commits And Merges'
 
 
 
@@ -35,8 +35,13 @@ repoName=$(gitReport.sh)
 function pipeline(){
   name=$1
   extraParams=$2
-  git log --branches= "--format=%ae %ad"  --date=format:%Y-%m-%d --since $fromDate --until $toDate $extraParams |    sort | uniq -c | awk -v repo="$repoName" -v name="$name" 'BEGIN {OFS="\t"} {print name,repo, $1, $2, $3}'
+  git log --branches= --format=%ae --since $fromDate --until $toDate $extraParams|    sort | uniq -c | awk -v repo="$repoName" -v name="$name" 'BEGIN {OFS="\t"} {print name,repo, $1, $2}'
 }
 
 pipeline  commits
 pipeline  merges  --merges
+
+#git log --branches= --format=%ae --since 2020-01-01 --until 2020-10-10 | sort | uniq -c | awk -v repo="$repoName" '{print "commits",repo, $0}'
+#
+##echo "Merges report $(gitReport.sh) --since $fromDate --until $toDate"
+#git log --branches= --format=%ae --since 2020-01-01 --until 2020-10-10 --merges | sort | uniq -c |  awk -v repo="$repoName" '{print "merges",repo, $1,$2}'
