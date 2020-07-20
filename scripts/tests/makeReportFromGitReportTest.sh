@@ -22,7 +22,6 @@ commits	https://github.com/phil-rice/GitScraping.git 	3	philip.rice@hcl.com,2020
 makeReportFromGitReport.sh scripts/sample/emails.txt 2020-07-09 2020-07-20 > $log
 
 
-
 echo "phil.rice@iee.org 2020-07-09
 phil.rice@iee.org 2020-07-10
 phil.rice@iee.org 2020-07-11
@@ -60,3 +59,4 @@ philip.rice@ing.com 2020-07-18
 philip.rice@ing.com 2020-07-19
 philip.rice@ing.com 2020-07-20   "  | diff -w - $log
 
+rm gitReports
