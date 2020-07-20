@@ -10,7 +10,18 @@ function finish(){
 }
 trap finish EXIT
 
+echo "commits	https://github.com/phil-rice/Anagram.git 	4	phil.rice@iee.org,2018-11-07
+commits	https://github.com/phil-rice/Anagram.git 	1	phil.rice@validoc.org,2018-11-08
+commits	https://github.com/phil-rice/seleniumDemo 	1	phil.rice@validoc.org,2020-06-29
+commits	https://github.com/phil-rice/GitScraping.git 	2	phil.rice@validoc.org,2020-07-11
+commits	https://github.com/phil-rice/GitScraping.git 	1	phil.rice@validoc.org,2020-07-19
+commits	https://github.com/phil-rice/fizzbuzz3.git 	1	philip.rice2@ing.com,2019-07-04
+commits	https://github.com/phil-rice/GitScraping.git 	3	philip.rice@hcl.com,2020-07-19
+" > gitReports
+
 makeReportFromGitReport.sh scripts/sample/emails.txt 2020-07-09 2020-07-20 > $log
+
+
 
 echo "phil.rice@iee.org 2020-07-09
 phil.rice@iee.org 2020-07-10
