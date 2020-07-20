@@ -36,4 +36,9 @@ case "$#" in
    *) usage $@
 esac
 
+if [[ $toDate < $fromDate ]]; then
+    echo "From date $fromDate must be before To date $toDate"
+    exit 2
+fi
+
 echo "$fromDate $toDate"

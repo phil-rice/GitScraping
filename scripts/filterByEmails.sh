@@ -24,6 +24,6 @@ if [ ! -f $file ]; then
 fi
 if [ $# == 2 -a "$2"  != "--check" ]; then usage; fi
 if [ "$2" == "--check" ]; then prefix="echo "; fi
-filter=$(tr '\n' '|'  < $file |  sed 's/|/\|/g')
+filter=$(tr '\n' '|'  < $file |  sed -e 's/|/\|/g' -e 's/|$//g' )
 
 $prefix grep -E $filter

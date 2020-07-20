@@ -35,7 +35,7 @@ repoName=$(gitReport.sh)
 function pipeline(){
   name=$1
   extraParams=$2
-  git log --branches= "--format=%ae %ad"  --date=format:%Y-%m-%d --since $fromDate --until $toDate $extraParams |    sort | uniq -c | awk -v repo="$repoName" -v name="$name" 'BEGIN {OFS="\t"} {print name,repo, $1, $2, $3}' | sort -k5,5 -k4,4
+  git log --branches= "--format=%ae %ad"  --date=format:%Y-%m-%d --since $fromDate --until $toDate $extraParams |    sort | uniq -c | awk -v repo="$repoName" -v name="$name" 'BEGIN {OFS="\t"} {print name,repo, $1, $2 "," $3}' | sort -k5,5 -k4,4
 }
 
 pipeline  commits

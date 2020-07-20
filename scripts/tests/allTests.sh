@@ -7,3 +7,5 @@ calculateFromToDatesTests.sh
 executeCommandInRepoTest.sh
 executeCommandsInMultipleReposTest.sh
 filterByEmailsTest.sh
+datesAndEmailsTests.sh
+makeReportFromGitReportTest.sh
