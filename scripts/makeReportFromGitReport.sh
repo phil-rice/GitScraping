@@ -25,4 +25,4 @@ if [ ! -f "gitReports" ]; then
 fi
 
 sort gitReports -k4,4 -o $temp
-datesAndEmails.sh "$1" "$2" "$3" | sort | join - $temp -2 4 -a 1
+datesAndEmails.sh "$1" "$2" "$3" | sort | join - $temp -2 4 -a 1  | awk -F '[ ,]' '{print $1, $2, $3, $4, $5}'
